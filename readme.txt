@@ -19,3 +19,6 @@ babel-plugin-transform-class-properties
 
 # install react too
 npm i react react-dom prop-types
+
+# install css loader for react webpack
+npm install css-loader --save-dev
