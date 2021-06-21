@@ -1,4 +1,4 @@
 /.vscode
 /venv
-db*
+/node_modules
 /db.sqlite3
