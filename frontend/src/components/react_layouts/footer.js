@@ -21,9 +21,9 @@ export class Footer extends Component {
                                 </a>
 
                                 {/* <!-- Google --> */}
-                                <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                                {/* <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">
                                     <i className="fab fa-google"></i>
-                                </a>
+                                </a> */}
 
                                 {/* <!-- Instagram --> */}
                                 <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button">

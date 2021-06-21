@@ -8,3 +8,4 @@ class profile(models.Model):
     email = models.EmailField(max_length=100)
     dob = models.CharField(max_length=200)
     phone = models.CharField(max_length=15)
+    receive_mail = models.BooleanField()

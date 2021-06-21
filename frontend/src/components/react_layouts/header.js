@@ -7,7 +7,9 @@ export class Header extends Component {
         return (
             <>
                 <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" style={{height:"6em"}}>
-                    <a className="navbar-brand mr-auto mr-lg-0" href="#" style={{fontSize:"3em"}}>Forms &nbsp;&nbsp;</a>
+                    <a className="navbar-brand mr-auto mr-lg-0" href="#" style={{fontSize:"3em"}}>
+                    <img src="https://icon-library.com/images/form-icon/form-icon-5.jpg" style={{width: "1em", marginBottom:"10px"}}/> Forms &nbsp;&nbsp;
+                    </a>
                     <button className="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                         <span className="navbar-toggler-icon"></span>
                     </button>
