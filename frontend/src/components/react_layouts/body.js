@@ -8,14 +8,13 @@ import {getForms, addForm} from '../../actions/forms'
 export class Body extends Component {
 
     state = {
-        appno:'',
-        name: '',
-        email:'',
-        gender: '',
+        firstname: '',
+        lastname: '',
+        email: '',
         phone: '',
         dob: '',
+        gender: '',
     }
-
 
     // static propTypes ={
     //     forms: PropTypes.array.isRequired
@@ -31,26 +30,28 @@ export class Body extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        console.log("form successfully submitted");
+        // const arr = this.state.firstname + ' ' + this.state.lastname;
+        const temp = {
+            name: this.state.firstname + ' ' + this.state.lastname,
+            email: this.state.email,
+            phone: this.state.phone,
+            dob: this.state.dob,
+            gender: this.state.gender,
+        }
+        // console.log(temp);
+        this.props.addForm(temp);
+        // console.log("Form Successfully Submitted in the database");
+    }
 
-        //adding data to the states
-
-        this.state.name = "a";
-        this.state.email = "abc@gmail.com";
-        this.state.gender = "c";
-        this.state.phone = "1234";
-        this.state.dob = "12-4-2021";
-
-        ///////////////////
-
-        const {name,email,gender,phone,dob} =this.state;
-        const form = {name, email, gender, phone, dob};
-        this.props.addForm(form);
+    onChange = e => {
+        this.setState({  [e.target.name] : e.target.value  });
+        // console.log(e.target.name,e.target.value);
+        // console.log(this.state);
     }
 
 
     render() {
-        const {name,email,gender,phone,dob} = this.state
+        // const {firstname, lastname, email, gender, phone, dob} = this.state;
         return (
             <>
                 <Fragment>
@@ -75,16 +76,16 @@ export class Body extends Component {
                                                 <div className="form-row mb-4">
                                                     <div className="col">
                                                         {/* <!-- First name --> */}
-                                                        <input type="text" id="firstName" name="firstName" className="form-control" placeholder="First name" required/>
+                                                        <input type="text" onChange={this.onChange} id="firstName" name="firstname" className="form-control" placeholder="First name" required/>
                                                     </div>
                                                     <div className="col">
                                                         {/* <!-- Last name --> */}
-                                                        <input type="text" id="lastName" name="lastName" className="form-control" placeholder="Last name" required/>
+                                                        <input type="text" onChange={this.onChange}  id="lastName" name="lastname" className="form-control" placeholder="Last name" required/>
                                                     </div>
                                                 </div>
 
                                                 {/* <!-- E-mail --> */}
-                                                <input type="email" id="email" name="email" className="form-control mb-4" placeholder="E-mail" required/>
+                                                <input type="email" onChange={this.onChange} id="email" name="email" className="form-control mb-4" placeholder="E-mail" required/>
 
                                                 {/* <!-- Password --> */}
                                                 {/* <input type="password" id="defaultRegisterFormPassword" className="form-control" placeholder="Password"
@@ -101,15 +102,15 @@ export class Body extends Component {
                                                     </div>
                                                     <div className="col-8 d-flex align-items-center">
                                                         {/* <!-- Last name --> */}
-                                                        <input type="radio" value="male" id="male" name="gender" className="form-control w-25 h-100 ml-2"/>
-                                                        <label className="h6 m-0 mr-2" htmlFor="male" defaultChecked> Male </label>
-                                                        <input type="radio" value="female" id="female" name="gender" className="form-control w-25 h-100"/>
+                                                        <input type="radio" onChange={this.onChange} value="Male" id="male" name="gender" className="form-control w-25 h-100 ml-2"/>
+                                                        <label className="h6 m-0 mr-2" htmlFor="male"> Male </label>
+                                                        <input type="radio" onChange={this.onChange} value="Female" id="female" name="gender" className="form-control w-25 h-100"/>
                                                         <label className="h6 m-0" htmlFor="female"> Female </label>
                                                     </div>
                                                 </div>
 
                                                 {/* <!-- Phone number --> */}
-                                                <input type="number" name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
+                                                <input type="number" onChange={this.onChange} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
                                                 <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
                                                     Optional - for two step authentication
                                                 </small>
@@ -120,7 +121,7 @@ export class Body extends Component {
                                                         <p className="h5 m-0">D.O.B: </p>
                                                     </div>
                                                     <div className="col-8">
-                                                        <input type="date" id="dob" name="dob" className="form-control" placeholder="D.O.B" required/>
+                                                        <input type="date" onChange={this.onChange} id="dob" name="dob" className="form-control" placeholder="D.O.B" required/>
                                                     </div>
                                                 </div>
 
