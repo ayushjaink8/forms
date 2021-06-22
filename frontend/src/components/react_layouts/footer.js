@@ -47,7 +47,7 @@ export class Footer extends Component {
                             © 2021 Copyright: 
                             <a className="text-white" href="https://github.com/ayushjaink8/"> Ayush Jain</a>
                         </div>
-                        {/* <!-- Copyright --> */}
+
                     </footer>
 
                 </div>

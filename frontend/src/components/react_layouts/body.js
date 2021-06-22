@@ -18,23 +18,23 @@ export class Body extends Component {
                                     <div className="col-xl-6 col-lg-7 col-md-9 col-sm-11">
 
                                         {/* <!-- Default form register --> */}
-                                        <form className="text-center" action="#!">
+                                        <form className="text-center">
 
                                             <p className="h1" style={{marginBottom:"1em"}}>Fill My Form</p>
 
                                             <div className="form-row mb-4">
                                                 <div className="col">
                                                     {/* <!-- First name --> */}
-                                                    <input type="text" id="defaultRegisterFormFirstName" className="form-control" placeholder="First name"/>
+                                                    <input type="text" value="" id="firstName" name="firstName" className="form-control" placeholder="First name"/>
                                                 </div>
                                                 <div className="col">
                                                     {/* <!-- Last name --> */}
-                                                    <input type="text" id="defaultRegisterFormLastName" className="form-control" placeholder="Last name"/>
+                                                    <input type="text" value="" id="lastName" name="lastName" className="form-control" placeholder="Last name"/>
                                                 </div>
                                             </div>
 
                                             {/* <!-- E-mail --> */}
-                                            <input type="email" className="form-control mb-4" placeholder="E-mail"/>
+                                            <input type="email" value="" id="email" name="email" className="form-control mb-4" placeholder="E-mail"/>
 
                                             {/* <!-- Password --> */}
                                             {/* <input type="password" id="defaultRegisterFormPassword" className="form-control" placeholder="Password"
@@ -52,15 +52,14 @@ export class Body extends Component {
                                                 <div className="col-8 d-flex align-items-center">
                                                     {/* <!-- Last name --> */}
                                                     <input type="radio" value="male" id="male" name="gender" className="form-control w-25 h-100 ml-2"/>
-                                                    <label className="h6 m-0 mr-2" for="male"> Male </label>
-                                                    <input type="radio" value="male" id="female" name="gender" className="form-control w-25 h-100"/>
-                                                    <label className="h6 m-0" for="female"> Female </label>
+                                                    <label className="h6 m-0 mr-2" htmlFor="male"> Male </label>
+                                                    <input type="radio" value="female" id="female" name="gender" className="form-control w-25 h-100"/>
+                                                    <label className="h6 m-0" htmlFor="female"> Female </label>
                                                 </div>
                                             </div>
 
                                             {/* <!-- Phone number --> */}
-                                            <input type="number" id="defaultRegisterPhonePassword" className="form-control" placeholder="Phone number"
-                                            aria-describedby="defaultRegisterFormPhoneHelpBlock"/>
+                                            <input type="number" name="phone" id="phone" className="form-control" placeholder="Phone number"/>
                                             <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
                                                 Optional - for two step authentication
                                             </small>
@@ -68,19 +67,17 @@ export class Body extends Component {
                                             {/* date of birth */}
                                             <div className="form-row mb-4">
                                                 <div className="col-4 align-self-center">
-                                                    {/* <!-- D.O.B --> */}
                                                     <p className="h5 m-0">D.O.B: </p>
                                                 </div>
                                                 <div className="col-8">
-                                                    {/* <!-- Last name --> */}
-                                                    <input type="date" className="form-control" placeholder="D.O.B"/>
+                                                    <input type="date" value="" id="dob" name="dob" className="form-control" placeholder="D.O.B"/>
                                                 </div>
                                             </div>
 
                                             {/* <!-- Confirmation Email --> */}
                                             <div className="custom-control custom-checkbox">
-                                                <input type="checkbox" className="custom-control-input" id="defaultRegisterFormNewsletter"/>
-                                                <label className="custom-control-label" for="defaultRegisterFormNewsletter"> Receive Confirmation Email </label>
+                                                <input type="checkbox" name="receive" className="custom-control-input" id="receive"/>
+                                                <label className="custom-control-label" htmlFor="defaultRegisterFormNewsletter"> Receive Confirmation Email </label>
                                             </div>
 
                                             {/* <!-- Submit button --> */}
@@ -113,7 +110,6 @@ export class Body extends Component {
 
                         </div>
 
-                    {/* </div> */}
                     <br/>
                 </div>
             </>
