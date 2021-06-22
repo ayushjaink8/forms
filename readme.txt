@@ -17,8 +17,13 @@ babel-loader
 @babel/preset-react
 babel-plugin-transform-class-properties
 
-# install react too
+# install react too..
 npm i react react-dom prop-types
 
-# install css loader for react webpack
+# install css loader for react webpack..
 npm install css-loader --save-dev
+
+# include react redux package to bind react with django app..
+npm i redux react-redux
+npm i edux-thunk                          # a middleware used to make asynchronous requests from our actions
+npm i redux-devtools-extension
