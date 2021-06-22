@@ -27,3 +27,6 @@ npm install css-loader --save-dev
 npm i redux react-redux
 npm i redux-thunk                          # a middleware used to make asynchronous requests from our actions
 npm i redux-devtools-extension
+
+# install axios for data transfer between django and react
+npm i axios
