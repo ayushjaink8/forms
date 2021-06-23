@@ -3,6 +3,8 @@
 
 How to Setup!
 
+Kindly install Python and NodeJS in your system before proceeding any further!
+
 ################################################################################################
 
 **For linux or mac users :
@@ -11,6 +13,7 @@ git clone https://github.com/ayushjaink8/forms.git             # to clone the gi
 
 cd forms                                                       # enter into the project
 
+python3 -m pip install --user --upgrade pip                    # make sure your pip is up-to-date
 python3 -m pip install --user virtualenv                        # install virtual environment
 python3 -m venv venv                                          # Creating the virtual environment
 . venv/bin/activate                                          # Activate the virtual environment
@@ -47,6 +50,8 @@ git clone https://github.com/ayushjaink8/forms.git             # to clone git re
 
 cd forms                                                       # enter into the project
 
+python -m pip install --upgrade pip                              # make sure your pip is up-to-date
+python -m pip install --user virtualenv                          # install virtual environment
 python -m venv venv                                          # Creating the virtual environment
 cd venv/Scripts && activate                                  # Activate the virtual environment
 [ (venv) will appear in front of your directory ]
@@ -79,19 +84,6 @@ npm run dev
 python manage.py runserver                                      # To run the development server
 
 ################################################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -130,9 +122,3 @@ npm i redux-devtools-extension
 # install axios for data transfer between django and react
 npm i axios
 
-
-
-
-Superuser ->
-U:ayushjain
-P:ayushjain
