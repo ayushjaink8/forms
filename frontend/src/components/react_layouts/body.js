@@ -234,11 +234,10 @@ export class Body extends Component {
 
 
                     <Tab isSelected={this.state.selected === 'Explore'}>
-                        <div className="text-center">
-                            <h1>I am from Explore Tab</h1><br/>
+                        <>
+                            {/* <h1>I am from Explore Tab</h1><br/> */}
                             <Explore/>    {/* linking explore.js over here */}
-                            <br/><h1>Nothing is here. Kindly Switch back to Dashboard</h1>
-                        </div>
+                        </>
                     </Tab>
 
                 </TabNav>
