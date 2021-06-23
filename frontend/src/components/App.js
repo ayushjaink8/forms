@@ -12,19 +12,26 @@ import store from '../store';
 
 export class App extends Component {
     render(){
-        return(
-            <>
-                <Provider store={store}>
-
-                    <Header/>
-
-                    <Body/>
-
-                    <Footer/>
-
-                </Provider>
-            </>
-        )
+        if(true){              // Write any condition you want
+            return(
+                    <>
+                        <Provider store={store}>
+                            <Header/>
+                            <Body/>
+                            <Footer/>
+                        </Provider>
+                    </>
+            )
+        }
+        else{
+            return(
+                <>
+                    <Provider store={store}>
+                        <h1>I am from App.js else statement</h1>
+                    </Provider>
+                </>
+            )
+        }
     }
 }
 

@@ -41,22 +41,22 @@ export class Header extends Component {
                     </div>
                 </nav>
 
-                <div className="nav-scroller bg-white shadow-sm" style={{marginTop:"3em"}}>
+                {/* <div className="nav-scroller bg-white shadow-sm" style={{marginTop:"3em"}}>
                     <nav className="nav nav-underline" style={{justifyContent:"center"}}>
                         <a className="nav-link active" href="#">Dashboard</a>
                         <a className="nav-link" href="#">
-                            Friends
-                            <span className="badge badge-pill bg-light align-text-bottom">27</span>
+                            Submissions
+                            <span className="badge badge-pill bg-light align-text-bottom">9+</span>
                         </a>
-                        <a className="nav-link" href="#">Explore</a>
+                        <a className="nav-link" href="#">Explore</a> */}
                         {/* <a className="nav-link" href="#">Suggestions</a>
                         <a className="nav-link" href="#">Link</a>
                         <a className="nav-link" href="#">Link</a>
                         <a className="nav-link" href="#">Link</a>
                         <a className="nav-link" href="#">Link</a>
                         <a className="nav-link" href="#">Link</a> */}
-                    </nav>
-                </div>
+                    {/* </nav>
+                </div> */}
             </>
         )
     }

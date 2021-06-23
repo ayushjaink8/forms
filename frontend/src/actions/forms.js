@@ -19,11 +19,14 @@ export const getForms = () => dispatch =>{
 };
 
 
-// Delete forms action!
+// Delete form action!
+/*
 
 
+*/
 
-// add forms action!
+
+// add new form action!
 
 export const addForm = (form) => dispatch =>{
     axios

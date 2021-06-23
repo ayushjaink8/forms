@@ -30,3 +30,10 @@ npm i redux-devtools-extension
 
 # install axios for data transfer between django and react
 npm i axios
+
+
+
+
+Superuser ->
+U:ayushjain
+P:ayushjain
