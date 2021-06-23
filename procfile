@@ -1,4 +1,4 @@
-release: npm run build
+release: npm run dev
 release: python manage.py migrate
 web: python manage.py runserver
 web: gunicorn project.wsgi --log-file -
