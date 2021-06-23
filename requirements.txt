@@ -1,3 +1,7 @@
 django
 djangorestframework
 django-rest-knox
+django-cors-headers
+pytz
+gunicorn
+whitenoise
