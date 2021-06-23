@@ -1,6 +1,6 @@
 //    Forms Reducers ...
 
-import {GET_FORMS, ADD_FORM} from "../actions/types.js";
+import {GET_FORMS, ADD_FORM, DELETE_FORM} from "../actions/types.js";
 
 
 const initialState = {
@@ -20,6 +20,11 @@ export default function(state = initialState, action){
                 ...state,
                 forms: [...state.forms, action.payload]
             };
+        case DELETE_FORM:
+            return {
+                ...state,
+                forms: state.forms.filter(form => form.id !== action.payload )
+            }
         default:
             return state;
     }

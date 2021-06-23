@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import {getForms, addForm} from '../../actions/forms'
+import {getForms, addForm, deleteForm} from '../../actions/forms'
 
 import TabNav from './TabNav'
 import Tab from './Tab'
@@ -34,13 +34,13 @@ export class Body extends Component {
     }
 
 
-    // static propTypes ={
-    //     forms: PropTypes.array.isRequired
-    // }
+    static propTypes ={
+        forms: PropTypes.array.isRequired
+    }
 
-    // componentDidMount(){
-    //     this.props.getForms();
-    // }
+    componentDidMount(){
+        this.props.getForms();
+    }
 
     static propTypes ={
         addForm: PropTypes.func.isRequired
@@ -67,6 +67,11 @@ export class Body extends Component {
         // console.log(e.target.name,e.target.value);
         // console.log(this.state);
     }
+
+    // handleOnDeleteForm = e => {
+    //     this.props.deleteForm.bind(this, e.id);
+    //     // console.log("delete function called")
+    // }
 
 
     render() {
@@ -190,14 +195,50 @@ export class Body extends Component {
 
 
                     <Tab isSelected={this.state.selected === 'Submissions'}>
-                        <h1>I am From submissions tab</h1>
+                        <Fragment>
+                            <br/>
+                            <h2 className="text-center">Submissions currently present in Database</h2>
+                            <br/>
+                            <div className="table-wrapper text-center" style={{margin:"1.5vw"}}>
+                                <table className="table table-bordered table-hover table-sm table-responsive-sm">
+                                    <thead className="thead-dark" style={{height:"3.5em"}}>
+                                        <tr>
+                                            <th className="align-middle">ID</th>
+                                            <th className="align-middle">Name</th>
+                                            <th className="align-middle">Email</th>
+                                            <th className="align-middle">Gender</th>
+                                            <th className="align-middle">Phone</th>
+                                            <th className="align-middle">D.O.B</th>
+                                            <th className="align-middle">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {this.props.forms.map ( form =>(
+                                            <tr key="form.id">
+                                                <td className="align-middle">{form.id}</td>
+                                                <td className="align-middle">{form.name}</td>
+                                                <td className="align-middle">{form.email}</td>
+                                                <td className="align-middle">{form.gender}</td>
+                                                <td className="align-middle">{form.phone}</td>
+                                                <td className="align-middle">{form.dob}</td>
+                                                <td className="align-middle"><button onClick={this.props.deleteForm.bind(this, form.id)} className="btn btn-danger btn-sm" href="#">Delete</button></td>
+                                                {/* <td className="align-middle"><button onClick={this.handleOnDeleteForm} className="btn btn-danger btn-sm">Delete</button></td> */}
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </Fragment>
                     </Tab>
 
 
 
                     <Tab isSelected={this.state.selected === 'Explore'}>
-                        <h1>I am from Explore Tab</h1>
-                        <Explore/>    {/* linking explore.js over here */}
+                        <div className="text-center">
+                            <h1>I am from Explore Tab</h1><br/>
+                            <Explore/>    {/* linking explore.js over here */}
+                            <br/><h1>Nothing is here. Kindly Switch back to Dashboard</h1>
+                        </div>
                     </Tab>
 
                 </TabNav>
@@ -211,13 +252,13 @@ export class Body extends Component {
 //    Vague Data Flow:  props -> mapStatesToProps -> initialState in reducers/forms.js -> store.js  -> database (thunk and diff. middleware included)
 //     -> calling data from database in actions/forms.js  and then exporting it here!
 
-// const mapStatesToProps = state => ({
-//     forms: state.forms.forms
-// });
+const mapStatesToProps = state => ({
+    forms: state.forms.forms
+});
 
 
 
 // export default connect(mapStatesToProps, {getForms})(Body);
-export default connect(null, {addForm})(Body);
+export default connect( mapStatesToProps , {addForm,getForms,deleteForm})(Body);
 
 // export default Body

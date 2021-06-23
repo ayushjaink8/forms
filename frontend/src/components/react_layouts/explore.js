@@ -4,7 +4,7 @@ export class Explore extends Component {
     render() {
         return (
             <div>
-                <h1>I am from explore.js</h1>
+                <h1>I am from Explore.js</h1>
             </div>
         )
     }
