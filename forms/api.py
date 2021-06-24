@@ -1,12 +1,20 @@
 from forms.models import profile       # importing models from models.py can use "import forms.models" to import all models
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from .seriallizers import FormSerializer      # getting data from seriallizers.py (fields of FormSerializers)
 from django.http import HttpResponse, HttpResponseRedirect,response
+
+from django.contrib.auth.models import User
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+
 
 
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.mail import send_mail
+
+from forms import seriallizers
 
 def send_email(email_id):
     subject = "Application Form Submitted Successfully || Fill My Forms || Ayush Jain"
@@ -26,6 +34,24 @@ class FormViewSets(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = FormSerializer
+
+    # print(queryset)
+    # print("dfdskjbfds+d sdfg km\n\n\n\n\n j kjkjdsf d hajsh fh jkfhs ")
+    # print(serializer_class)
+    # print("dfdskjbfds+d sdfg km\n\n\n\n\n j kjkjdsf d hajsh fh jkfhs ")
+    # print(FormSerializer)
+
+    # @action(detail=True, methods=['post'])
+    # def sendEmail(self, request):
+    #     user = self.get_object()
+    #     serializer = FormSerializer(data=request.data)
+    #     email = serializer.validated_data['email']
+    #     send_email(email)
+    #     print("\n\nEmail:",email,"\n\n")
+    #     print("\n\nEmail:",seriallizer,"\n\n")
+    #     return Response({'status': 'Email Send'})
+
+
 
     # def create(self, request, *args, **kwargs):
     #     send_email(profile.email)

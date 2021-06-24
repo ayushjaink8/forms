@@ -36,8 +36,8 @@ npm i redux react-redux redux-thunk redux-devtools-extension
 npm i axios
 
 
-python3 manage.py makemigrations
-python3 manage.py migrate
+python3 manage.py makemigrations                  # kindly, run this command twice if u get any warning!
+python3 manage.py migrate                         # kindly, run this command twice if u get any warning!
 
 npm run dev
 python manage.py runserver                                      # To run the development server
@@ -77,8 +77,8 @@ npm i redux react-redux redux-thunk redux-devtools-extension
 npm i axios
 
 
-python manage.py makemigrations
-python manage.py migrate
+python manage.py makemigrations                              # kindly, run this command twice if u get any warning!
+python manage.py migrate                                     # kindly, run this command twice if u get any warning!
 
 npm run dev
 python manage.py runserver                                      # To run the development server

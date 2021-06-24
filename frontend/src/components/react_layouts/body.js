@@ -16,6 +16,7 @@ export class Body extends Component {
         lastname: '',
         email: '',
         phone: '',
+        phone_code: '',
         dob: '',
         gender: 'Male',
     }
@@ -31,6 +32,9 @@ export class Body extends Component {
 
     setSelected = (tab) => {
         this.setState({ selected: tab });
+        // if(tab === "Dashboard"){
+        //     appendFormValidations();
+        // }
     }
 
 
@@ -52,7 +56,7 @@ export class Body extends Component {
         const temp = {
             name: this.state.firstname + ' ' + this.state.lastname,
             email: this.state.email,
-            phone: this.state.phone,
+            phone: this.state.phone_code + this.state.phone,
             dob: this.state.dob,
             gender: this.state.gender,
         }
@@ -60,18 +64,20 @@ export class Body extends Component {
         this.props.addForm(temp);
         console.log("Form Successfully Submitted in the database");
         this.setState({ selected: 'Submissions' });
+
+        this.setState({ [firstname] : '' });
+        this.setState({ [lastname] : '' });
+        this.setState({ [email] : '' });
+        this.setState({ [phone] : '' });
+        this.setState({ [phone_code] : '' });
+        this.setState({ [dob] : '' });
+        this.setState({ [gender] :'Male' });
+        document.getElementById('male').checked=true;
     }
 
     onChange = e => {
         this.setState({  [e.target.name] : e.target.value  });
-        // console.log(e.target.name,e.target.value);
-        // console.log(this.state);
     }
-
-    // handleOnDeleteForm = e => {
-    //     this.props.deleteForm.bind(this, e.id);
-    //     // console.log("delete function called")
-    // }
 
 
     render() {
@@ -108,7 +114,7 @@ export class Body extends Component {
                                                             </div>
                                                             <div className="col">
                                                                 {/* <!-- Last name --> */}
-                                                                <input type="text" onChange={this.onChange}  id="lastName" name="lastname" className="form-control" placeholder="Last name" required/>
+                                                                <input type="text" onChange={this.onChange}  id="lastName" name="lastname" className="form-control" placeholder="Last name"/>
                                                             </div>
                                                         </div>
 
@@ -131,14 +137,22 @@ export class Body extends Component {
                                                             <div className="col-8 d-flex align-items-center">
                                                                 {/* <!-- Last name --> */}
                                                                 <input type="radio" onChange={this.onChange} value="Male" id="male" name="gender" className="form-control w-25 h-100 ml-2"/>
-                                                                <label className="h6 m-0 mr-2" htmlFor="male"> Male </label>
+                                                                <label className="h6 m-0 mr-2" htmlFor="male" checked={true}> Male </label>
                                                                 <input type="radio" onChange={this.onChange} value="Female" id="female" name="gender" className="form-control w-25 h-100"/>
                                                                 <label className="h6 m-0" htmlFor="female"> Female </label>
                                                             </div>
                                                         </div>
 
                                                         {/* <!-- Phone number --> */}
-                                                        <input type="number" onChange={this.onChange} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
+
+                                                        <div className="form-row mb-4">
+                                                            <div className="col-3 col-sm-2">
+                                                                <input type="text" onChange={this.onChange} id="phone_code" name="phone_code" className="form-control" placeholder="+91" required/>
+                                                            </div>
+                                                            <div className="col-9 col-sm-10">
+                                                                <input type="number" onChange={this.onChange} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
+                                                            </div>
+                                                        </div>
                                                         <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
                                                             Optional - for two step authentication
                                                         </small>
@@ -192,14 +206,12 @@ export class Body extends Component {
                         </Fragment>
                     </Tab>
 
-
-
                     <Tab isSelected={this.state.selected === 'Submissions'}>
                         <Fragment>
                             <br/>
                             <h2 className="text-center">Submissions currently present in Database</h2>
                             <br/>
-                            <div className="table-wrapper text-center" style={{margin:"1.5vw"}}>
+                            <div className="table-wrapper text-center" style={{margin:"1.5vw", minHeight:"15em"}}>
                                 <table className="table table-bordered table-hover table-sm table-responsive-sm">
                                     <thead className="thead-dark" style={{height:"3.5em"}}>
                                         <tr>
@@ -235,14 +247,15 @@ export class Body extends Component {
 
                     <Tab isSelected={this.state.selected === 'Explore'}>
                         <>
-                            {/* <h1>I am from Explore Tab</h1><br/> */}
-                            <Explore/>    {/* linking explore.js over here */}
+                            <Explore/>
                         </>
                     </Tab>
+
 
                 </TabNav>
             </>
         );
+
 
     }
 }
