@@ -55,6 +55,10 @@ export class Body extends Component {
     onSubmit = e => {
         e.preventDefault();
         // const arr = this.state.firstname + ' ' + this.state.lastname;
+        console.log("Last Name: ",this.state.lastName);
+        if(this.state.lastName===undefined){
+            this.state.lastName="";
+        }
         const temp = {
             name: this.state.firstName + ' ' + this.state.lastName,
             email: this.state.email,
