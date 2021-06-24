@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import {Helmet} from "react-helmet";
+import FormValidations from '../JS_Helmets/FormValidations';
 
 import {getForms, addForm, deleteForm} from '../../actions/forms'
 
@@ -151,7 +152,7 @@ export class Body extends Component {
 
                                                         {/* <!-- Phone number --> */}
 
-                                                        <div className="form-row mb-4">
+                                                        <div className="form-row">
                                                             <div className="col-3 col-sm-2">
                                                                 <input type="text" onChange={this.onChange} id="phone_code" name="phone_code" className="form-control" placeholder="+91" required/>
                                                             </div>
@@ -209,7 +210,7 @@ export class Body extends Component {
 
                                 <br/>
                             </div>
-                            <Helmet>{/*  try adding javascript here */} </Helmet>
+                            <FormValidations/>
                         </Fragment>
                     </Tab>
 
