@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import {Helmet} from "react-helmet";
+import { send } from 'emailjs-com';
 import FormValidations from '../JS_Helmets/FormValidations';
 
 import {getForms, addForm, deleteForm} from '../../actions/forms'
@@ -22,6 +22,7 @@ export class Body extends Component {
         phone_code: '',
         dob: '',
         gender: '',
+        sendMail: false,
     }
 
     constructor(props){
@@ -40,6 +41,11 @@ export class Body extends Component {
         // }
     }
 
+    sendEmail= (e) => {
+        e.preventDefault();
+        console.log(e);
+    }
+
 
     static propTypes ={
         forms: PropTypes.array.isRequired
@@ -56,7 +62,7 @@ export class Body extends Component {
     onSubmit = e => {
         e.preventDefault();
         // const arr = this.state.firstname + ' ' + this.state.lastname;
-        console.log("Last Name: ",this.state.lastName);
+        // console.log("Last Name: ",this.state.lastName);
         if(this.state.lastName===undefined){
             this.state.lastName="";
         }
@@ -79,10 +85,45 @@ export class Body extends Component {
         this.setState({ ["phone_code"] : '' });
         this.setState({ ["dob"] : '' });
         this.setState({ ["gender"] :'' });
+
+        // Sending confirmation Email: ( through EmailJS - limit: 500 mails/day )
+
+        if(this.sendEmail){
+
+            send("emailjs_gmail","heroku_forms",{
+                name: temp.name,
+                email: temp.email,
+                gender: temp.gender,
+                dob: temp.dob,
+                phone: temp.phone,
+            },"user_syx5TpnvwFlKleeVtaueV")
+
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+
+            console.log("Confirmation Email send to",temp.email);
+        }
+
+
+        this.setState({ sendEmail :false });
+
     }
 
     onChange = e => {
         this.setState({  [e.target.name] : e.target.value  });
+    }
+    onReceiveEmail = e => {
+        // console.log("onReceived called ",e);
+        if(e.target.checked){
+            // console.log("if working");
+            this.sendEmail=true;
+        }
+        else{
+            this.sendEmail=false;
+        }
     }
 
 
@@ -176,7 +217,7 @@ export class Body extends Component {
 
                                                         {/* <!-- Confirmation Email --> */}
                                                         <div className="custom-control custom-checkbox">
-                                                            <input type="checkbox" name="receive" className="custom-control-input" id="receive"/>
+                                                            <input type="checkbox" onChange={this.onReceiveEmail}  name="receive" className="custom-control-input" id="receive"/>
                                                             <label className="custom-control-label" htmlFor="receive"> Receive Confirmation Email </label>
                                                         </div>
 
