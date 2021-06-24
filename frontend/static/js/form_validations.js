@@ -1,9 +1,6 @@
 
-
-document.getElementById('male').checked=true;    //for male to be checked by default
-
-
 ///    Adding the dob to be 18+ years
+
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -15,7 +12,10 @@ today = yyyy  + '-' + mm + "-" + dd;
 document.getElementById('dob').max=today;
 
 
-/////// add phone number validation
+
+
+/////// phone number validation
+
 var phone = document.getElementById('phone');
 phone.type="text";
 document.getElementById('phone').addEventListener("input", function(e) {

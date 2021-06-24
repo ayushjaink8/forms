@@ -3,6 +3,8 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import {Helmet} from "react-helmet";
+
 import {getForms, addForm, deleteForm} from '../../actions/forms'
 
 import TabNav from './TabNav'
@@ -12,13 +14,13 @@ import Explore from './explore'
 export class Body extends Component {
 
     state = {
-        firstname: '',
-        lastname: '',
+        firstName: '',
+        lastName: '',
         email: '',
         phone: '',
         phone_code: '',
         dob: '',
-        gender: 'Male',
+        gender: '',
     }
 
     constructor(props){
@@ -54,7 +56,7 @@ export class Body extends Component {
         e.preventDefault();
         // const arr = this.state.firstname + ' ' + this.state.lastname;
         const temp = {
-            name: this.state.firstname + ' ' + this.state.lastname,
+            name: this.state.firstName + ' ' + this.state.lastName,
             email: this.state.email,
             phone: this.state.phone_code + this.state.phone,
             dob: this.state.dob,
@@ -65,14 +67,13 @@ export class Body extends Component {
         console.log("Form Successfully Submitted in the database");
         this.setState({ selected: 'Submissions' });
 
-        this.setState({ [firstname] : '' });
-        this.setState({ [lastname] : '' });
-        this.setState({ [email] : '' });
-        this.setState({ [phone] : '' });
-        this.setState({ [phone_code] : '' });
-        this.setState({ [dob] : '' });
-        this.setState({ [gender] :'Male' });
-        document.getElementById('male').checked=true;
+        this.setState({ ["firstName"] : '' });
+        this.setState({ ["lastName"] : '' });
+        this.setState({ ["email"] : '' });
+        this.setState({ ["phone"] : '' });
+        this.setState({ ["phone_code"] : '' });
+        this.setState({ ["dob"] : '' });
+        this.setState({ ["gender"] :'' });
     }
 
     onChange = e => {
@@ -110,11 +111,11 @@ export class Body extends Component {
                                                         <div className="form-row mb-4">
                                                             <div className="col">
                                                                 {/* <!-- First name --> */}
-                                                                <input type="text" onChange={this.onChange} id="firstName" name="firstname" className="form-control" placeholder="First name" required/>
+                                                                <input type="text" onChange={this.onChange} id="firstName" name="firstName" className="form-control" placeholder="First name" required/>
                                                             </div>
                                                             <div className="col">
                                                                 {/* <!-- Last name --> */}
-                                                                <input type="text" onChange={this.onChange}  id="lastName" name="lastname" className="form-control" placeholder="Last name"/>
+                                                                <input type="text" onChange={this.onChange}  id="lastName" name="lastName" className="form-control" placeholder="Last name"/>
                                                             </div>
                                                         </div>
 
@@ -130,17 +131,18 @@ export class Body extends Component {
 
                                                         {/* Gender */}
                                                         <div className="form-row mb-4">
+
                                                             <div className="col-4 align-self-center">
-                                                                {/* <!-- D.O.B --> */}
                                                                 <p className="h5 m-0">Gender: </p>
                                                             </div>
+
                                                             <div className="col-8 d-flex align-items-center">
-                                                                {/* <!-- Last name --> */}
-                                                                <input type="radio" onChange={this.onChange} value="Male" id="male" name="gender" className="form-control w-25 h-100 ml-2"/>
-                                                                <label className="h6 m-0 mr-2" htmlFor="male" checked={true}> Male </label>
+                                                                <input type="radio" onChange={this.onChange} value="Male" id="male" name="gender" className="form-control w-25 h-100 ml-2" required/>
+                                                                <label className="h6 m-0 mr-2" htmlFor="male"> Male </label>
                                                                 <input type="radio" onChange={this.onChange} value="Female" id="female" name="gender" className="form-control w-25 h-100"/>
                                                                 <label className="h6 m-0" htmlFor="female"> Female </label>
                                                             </div>
+
                                                         </div>
 
                                                         {/* <!-- Phone number --> */}
@@ -203,6 +205,7 @@ export class Body extends Component {
 
                                 <br/>
                             </div>
+                            <Helmet>{/*  try adding javascript here */} </Helmet>
                         </Fragment>
                     </Tab>
 
