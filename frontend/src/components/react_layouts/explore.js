@@ -5,9 +5,9 @@ export class Explore extends Component {
         return (
             <>
                 <div className="text-center">
-                    <br/><br/><br/>
-                    <br/><h1>Nothing is here.<br/><br/> Kindly Switch back to Dashboard</h1>
-                    <br/><br/><br/><br/>
+                    <br/><br/>
+                    <br/><h2 style={{marginBottom:"0.4em"}}>Nothing is here.<br/><br/> Kindly Switch back to Dashboard <br/><br/> Thank you for visiting this website</h2>
+                    <br/><br/>
                 </div>
             </>
         )

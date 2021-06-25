@@ -259,6 +259,7 @@ export class Body extends Component {
                         <Fragment>
                             <br/>
                             <h2 className="text-center">Submissions currently present in Database</h2>
+                            <h6 className="text-center">(Kindly check your Inbox for recieved confirmation e-mails)</h6>
                             <br/>
                             <div className="table-wrapper text-center" style={{margin:"1.5vw", minHeight:"15em"}}>
                                 <table className="table table-bordered table-hover table-sm table-responsive-sm">
