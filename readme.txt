@@ -3,7 +3,7 @@
 
 How to Setup!
 
-Kindly install Python and NodeJS in your system before proceeding any further!
+Kindly install Python3 and NodeJS in your system before proceeding any further!
 
 ################################################################################################
 
@@ -23,20 +23,9 @@ python3 -m venv venv                                          # Creating the vir
 
 pip install -r requirements.txt                                 # Install the requirements
 
-npm i -D webpack webpack-cli
-npm i -D @babel/core babel-loader
-npm i -D @babel/preset-env @babel/preset-react
-npm i -D babel-plugin-transform-class-properties
+npm i                             # to install all the dependencies present in package.json
 
 
-npm i react react-dom prop-types
-npm install css-loader --save-dev
-npm i redux react-redux redux-thunk redux-devtools-extension
-
-npm i axios
-
-
-python3 manage.py makemigrations                  # kindly, run this command twice if u get any warning!
 python3 manage.py migrate                         # kindly, run this command twice if u get any warning!
 
 npm run dev
@@ -64,20 +53,9 @@ cd ../../                                                       # to change dire
 
 pip install -r requirements.txt                                 # Install the requirements
 
-npm i -D webpack webpack-cli
-npm i -D @babel/core babel-loader
-npm i -D @babel/preset-env @babel/preset-react
-npm i -D babel-plugin-transform-class-properties
+npm i                             # to install all the dependencies present in package.json
 
 
-npm i react react-dom prop-types
-npm install css-loader --save-dev
-npm i redux react-redux redux-thunk redux-devtools-extension
-
-npm i axios
-
-
-python manage.py makemigrations                              # kindly, run this command twice if u get any warning!
 python manage.py migrate                                     # kindly, run this command twice if u get any warning!
 
 npm run dev
@@ -98,6 +76,7 @@ django-cors-headers
 pytz
 gunicorn
 whitenoise
+psycopg2      # data and tables transfer among sqlite3 and postgres
 
 frontend React(npm) - >  (Eg command: npm i -D webpack-cli)
 webpack
