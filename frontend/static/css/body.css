@@ -4,3 +4,21 @@
 /* #form_container{
     height: 35em;
 } */
+
+
+/* To remove arrows in front of the numbers input like phone number */
+
+/* Chromium */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* ////////////////////////////////////////////////////////////////// */
+

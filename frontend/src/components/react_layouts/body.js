@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -39,11 +40,6 @@ export class Body extends Component {
         // if(tab === "Dashboard"){
         //     appendFormValidations();
         // }
-    }
-
-    sendEmail= (e) => {
-        e.preventDefault();
-        console.log(e);
     }
 
 
@@ -126,10 +122,29 @@ export class Body extends Component {
         }
     }
 
+    phoneInput = e => {
+
+        if(e.target.id=="phone"){
+            if(e.target.value.length>10){
+                // console.log(this.phone);
+                e.target.value = e.target.value.slice(0, 10)
+                // console.log(this.phone);
+            }
+        }
+        else if(e.target.id=="phone_code"){
+            if(e.target.value.length>4){
+                // console.log(this.phone_code);
+                e.target.value = e.target.value.slice(0, 4)
+                // console.log(this.phone_code);
+            }
+        }
+        const new_value = e.target.value;
+        this.setState({  [e.target.name] : new_value  });
+    }
+
 
     render() {
         // const {firstname, lastname, email, gender, phone, dob} = this.state;
-
         return (
             <>
                 <TabNav tabs={['Dashboard','Submissions','Explore']} selected={this.state.selected} setSelected={this.setSelected}>
@@ -140,16 +155,12 @@ export class Body extends Component {
                                 <br/>
 
                                     <div className=" px-4 bg-dark text-white my-5 py-5 z-depth-1">
-
                                         <section className="px-md-5 text-center text-lg-left dark-grey-text">
 
-                                            {/* <!--Grid row--> */}
-                                            <div className="row d-flex justify-content-center">
+                                            <div className="row d-flex justify-content-center">          {/* <!--Grid row--> */}
+                                                <div className="col-xl-6 col-lg-7 col-md-9 col-sm-11">         {/* <!--Grid column--> */}
 
-                                                {/* <!--Grid column--> */}
-                                                <div className="col-xl-6 col-lg-7 col-md-9 col-sm-11">
-
-                                                    {/* <!-- Default form register --> */}
+                                                    {/* <!-- Form Register Layout --> */}
                                                     <form className="text-center" onSubmit={this.onSubmit} >
 
                                                         <p className="h1" style={{marginBottom:"1em"}}>Fill My Form</p>
@@ -167,13 +178,6 @@ export class Body extends Component {
 
                                                         {/* <!-- E-mail --> */}
                                                         <input type="email" onChange={this.onChange} id="email" name="email" className="form-control mb-4" placeholder="E-mail" required/>
-
-                                                        {/* <!-- Password --> */}
-                                                        {/* <input type="password" id="defaultRegisterFormPassword" className="form-control" placeholder="Password"
-                                                        aria-describedby="defaultRegisterFormPasswordHelpBlock"/>
-                                                        <small id="defaultRegisterFormPasswordHelpBlock" className="form-text text-muted mb-4">
-                                                            At least 8 characters and 1 digit
-                                                        </small> */}
 
                                                         {/* Gender */}
                                                         <div className="form-row mb-4">
@@ -195,10 +199,10 @@ export class Body extends Component {
 
                                                         <div className="form-row">
                                                             <div className="col-3 col-sm-2">
-                                                                <input type="text" onChange={this.onChange} id="phone_code" name="phone_code" className="form-control" placeholder="+91" required/>
+                                                                <input type="text" onChange={this.onChange,this.phoneInput} id="phone_code" name="phone_code" className="form-control" placeholder="+91" required/>
                                                             </div>
                                                             <div className="col-9 col-sm-10">
-                                                                <input type="number" onChange={this.onChange} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
+                                                                <input type="number" onChange={this.onChange,this.phoneInput} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
                                                             </div>
                                                         </div>
                                                         <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
@@ -206,7 +210,7 @@ export class Body extends Component {
                                                         </small>
 
                                                         {/* date of birth */}
-                                                        <div className="form-row mb-4">
+                                                        <div className="form-row">
                                                             <div className="col-4 align-self-center">
                                                                 <p className="h5 m-0">D.O.B: </p>
                                                             </div>
@@ -214,6 +218,9 @@ export class Body extends Component {
                                                                 <input type="date" onChange={this.onChange} id="dob" name="dob" className="form-control" placeholder="D.O.B" required/>
                                                             </div>
                                                         </div>
+                                                        <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
+                                                            Age should be more than 18 years!
+                                                        </small>
 
                                                         {/* <!-- Confirmation Email --> */}
                                                         <div className="custom-control custom-checkbox">
@@ -223,13 +230,6 @@ export class Body extends Component {
 
                                                         {/* <!-- Submit button --> */}
                                                         <button className="btn btn-info my-4 btn-block" type="submit">Submit</button>
-
-                                                        {/* <p>Sign up with:</p>
-
-                                                        <a href="#" className="mx-1" role="button"><i className="fab fa-facebook-f"></i></a>
-                                                        <a href="#" className="mx-1" role="button"><i className="fab fa-twitter"></i></a>
-                                                        <a href="#" className="mx-1" role="button"><i className="fab fa-linkedin-in"></i></a>
-                                                        <a href="#" className="mx-1" role="button"><i className="fab fa-github"></i></a> */}
 
                                                         <hr/>
 
@@ -242,16 +242,16 @@ export class Body extends Component {
                                                     </form>
 
                                                 </div>
-
                                             </div>
 
                                         </section>
-
                                     </div>
 
                                 <br/>
                             </div>
-                            <FormValidations/>
+
+                            <FormValidations/>             {/* Adding script for form validations like date of birth should be 18+  */}
+
                         </Fragment>
                     </Tab>
 
