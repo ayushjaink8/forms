@@ -35,10 +35,15 @@ class FormViewSets(viewsets.ModelViewSet):
     ]
     serializer_class = FormSerializer
 
+    # def POST(self, request):
+    #     serializer = FormSerializer(data=request.data)
+    #     print("email send successfully!!")
+    #     send_email('lcs2020014@iiitl.ac.in')
+    #     serializer.save()
+    #     return  Response(serializer.data)
+
+
     # print(queryset)
-    # print("dfdskjbfds+d sdfg km\n\n\n\n\n j kjkjdsf d hajsh fh jkfhs ")
-    # print(serializer_class)
-    # print("dfdskjbfds+d sdfg km\n\n\n\n\n j kjkjdsf d hajsh fh jkfhs ")
     # print(FormSerializer)
 
     # @action(detail=True, methods=['post'])
@@ -48,7 +53,7 @@ class FormViewSets(viewsets.ModelViewSet):
     #     email = serializer.validated_data['email']
     #     send_email(email)
     #     print("\n\nEmail:",email,"\n\n")
-    #     print("\n\nEmail:",seriallizer,"\n\n")
+    #     print("\n\nEmail:",serializer,"\n\n")
     #     return Response({'status': 'Email Send'})
 
 
