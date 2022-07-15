@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import ReactDOM from 'react-dom';
+
 
 export class Footer extends Component {
     render() {
@@ -26,7 +26,7 @@ export class Footer extends Component {
                                 </a> */}
 
                                 {/* <!-- Instagram --> */}
-                                <a className="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/ayushjaink8/" role="button">
+                                <a className="btn btn-outline-light btn-floating m-1" href="https://www.instagram.com/ayushjaink7/" role="button">
                                     <i className="fab fa-instagram"></i>
                                 </a>
 
@@ -59,4 +59,3 @@ export class Footer extends Component {
 }
 
 export default Footer
-// ReactDOM.render(<Footer/>, document.getElementById('footer'))

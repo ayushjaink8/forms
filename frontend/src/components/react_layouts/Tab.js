@@ -6,8 +6,6 @@ export class Tab extends Component {
             return (
                 <>
                     {this.props.children}
-                    {/* <br/>
-                    <h1>abc</h1> */}
                 </>
             );
         }

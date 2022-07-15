@@ -3,7 +3,7 @@ export class TabNav extends Component {
     render() {
         return (
             <>
-                <div className="nav-scroller bg-white shadow-sm" style={{marginTop:"3em"}}>
+                <div className="nav-scroller bg-white shadow-sm" style={{marginTop:"6.4em"}}>
                     <nav className="nav nav-underline" style={{justifyContent:"center",color:"black"}}>
                         {
                             this.props.tabs.map ( tab => {

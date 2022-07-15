@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react'
 
-import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { send } from 'emailjs-com';
 import FormValidations from '../JS_Helmets/FormValidations';
 
 import {getForms, addForm, deleteForm} from '../../actions/forms'
@@ -12,6 +10,7 @@ import {getForms, addForm, deleteForm} from '../../actions/forms'
 import TabNav from './TabNav'
 import Tab from './Tab'
 import Explore from './explore'
+import Submissions from './Submissions';
 
 export class Body extends Component {
 
@@ -19,11 +18,10 @@ export class Body extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        phone: '',
-        phone_code: '',
+        feedback_text: '',
         dob: '',
         gender: '',
-        sendMail: false,
+        sendEmail: false,
     }
 
     constructor(props){
@@ -35,13 +33,9 @@ export class Body extends Component {
 
     }
 
-    setSelected = (tab) => {
+    setSelectedTab = (tab) => {
         this.setState({ selected: tab });
-        // if(tab === "Dashboard"){
-        //     appendFormValidations();
-        // }
     }
-
 
     static propTypes ={
         forms: PropTypes.array.isRequired
@@ -57,97 +51,52 @@ export class Body extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-        // const arr = this.state.firstname + ' ' + this.state.lastname;
-        // console.log("Last Name: ",this.state.lastName);
+
         if(this.state.lastName===undefined){
             this.state.lastName="";
         }
-        const temp = {
+        const sendData = {
             name: this.state.firstName + ' ' + this.state.lastName,
             email: this.state.email,
-            phone: this.state.phone_code + this.state.phone,
+            feedback_text: this.state.feedback_text,
             dob: this.state.dob,
             gender: this.state.gender,
+            sendEmail: this.state.sendEmail
         }
-        // console.log(temp);
-        this.props.addForm(temp);
+        
+        this.props.addForm(sendData);
         console.log("Form Successfully Submitted in the database");
-        this.setState({ selected: 'Submissions' });
 
-        this.setState({ ["firstName"] : '' });
-        this.setState({ ["lastName"] : '' });
-        this.setState({ ["email"] : '' });
-        this.setState({ ["phone"] : '' });
-        this.setState({ ["phone_code"] : '' });
-        this.setState({ ["dob"] : '' });
-        this.setState({ ["gender"] :'' });
+        this.setSelectedTab('Submissions');
 
-        // Sending confirmation Email: ( through EmailJS - limit: 500 mails/day )
-
-        if(this.sendEmail){
-
-            send("emailjs_gmail","heroku_forms",{
-                name: temp.name,
-                email: temp.email,
-                gender: temp.gender,
-                dob: temp.dob,
-                phone: temp.phone,
-            },"user_syx5TpnvwFlKleeVtaueV")
-
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-            }, function(error) {
-                console.log('FAILED...', error);
-            });
-
-            console.log("Confirmation Email send to",temp.email);
-        }
-
-
-        this.setState({ sendEmail :false });
-
+        this.setState({ 
+            firstName: '',
+            lastName: '',
+            email: '',
+            feedback_text: '',
+            dob: '',
+            gender: '',
+            sendEmail: false
+        });
     }
 
     onChange = e => {
         this.setState({  [e.target.name] : e.target.value  });
     }
+
     onReceiveEmail = e => {
-        // console.log("onReceived called ",e);
         if(e.target.checked){
-            // console.log("if working");
-            this.sendEmail=true;
+            this.state.sendEmail=true;
+        } else {
+            this.state.sendEmail=false;
         }
-        else{
-            this.sendEmail=false;
-        }
-    }
-
-    phoneInput = e => {
-
-        if(e.target.id=="phone"){
-            if(e.target.value.length>10){
-                // console.log(this.phone);
-                e.target.value = e.target.value.slice(0, 10)
-                // console.log(this.phone);
-            }
-        }
-        else if(e.target.id=="phone_code"){
-            if(e.target.value.length>4){
-                // console.log(this.phone_code);
-                e.target.value = e.target.value.slice(0, 4)
-                // console.log(this.phone_code);
-            }
-        }
-        const new_value = e.target.value;
-        this.setState({  [e.target.name] : new_value  });
     }
 
 
     render() {
-        // const {firstname, lastname, email, gender, phone, dob} = this.state;
         return (
             <>
-                <TabNav tabs={['Dashboard','Submissions','Explore']} selected={this.state.selected} setSelected={this.setSelected}>
+                <TabNav tabs={['Dashboard', 'Submissions', 'Explore']} selected={this.state.selected} setSelected={this.setSelectedTab}>
 
                     <Tab isSelected={this.state.selected === 'Dashboard'}>
                         <Fragment>
@@ -195,20 +144,6 @@ export class Body extends Component {
 
                                                         </div>
 
-                                                        {/* <!-- Phone number --> */}
-
-                                                        <div className="form-row">
-                                                            <div className="col-3 col-sm-2">
-                                                                <input type="text" onChange={this.onChange,this.phoneInput} id="phone_code" name="phone_code" className="form-control" placeholder="+91" required/>
-                                                            </div>
-                                                            <div className="col-9 col-sm-10">
-                                                                <input type="number" onChange={this.onChange,this.phoneInput} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
-                                                            </div>
-                                                        </div>
-                                                        <small id="defaultRegisterFormPhoneHelpBlock" className="form-text text-muted mb-4">
-                                                            Optional - for two step authentication
-                                                        </small>
-
                                                         {/* date of birth */}
                                                         <div className="form-row">
                                                             <div className="col-4 align-self-center">
@@ -222,9 +157,27 @@ export class Body extends Component {
                                                             Age should be more than 18 years!
                                                         </small>
 
+                                                        {/* <!-- Phone number --> */}
+                                                        {/* <div className="form-row">
+                                                            <div className="col-3 col-sm-2">
+                                                                <input type="text" onChange={this.onChange,this.phoneInput} id="phone_code" name="phone_code" className="form-control" placeholder="+91" required/>
+                                                            </div>
+                                                            <div className="col-9 col-sm-10">
+                                                                <input type="number" onChange={this.onChange,this.phoneInput} name="phone" id="phone" className="form-control" placeholder="Phone number" required/>
+                                                            </div>
+                                                        </div> */}
+
+
+                                                        {/* <!-- Feedback Text --> */}
+                                                        <div className="form-row mb-4">
+                                                            <div className="col">
+                                                                <textarea type="text" onChange={this.onChange} id="feedback_text" name="feedback_text" rows="4" className="form-control" placeholder="Your feedback ..." required/>
+                                                            </div>
+                                                        </div>
+
                                                         {/* <!-- Confirmation Email --> */}
                                                         <div className="custom-control custom-checkbox">
-                                                            <input type="checkbox" onChange={this.onReceiveEmail}  name="receive" className="custom-control-input" id="receive"/>
+                                                            <input type="checkbox" onChange={this.onReceiveEmail}  name="receive" className="custom-control-input" id="receive" />
                                                             <label className="custom-control-label" htmlFor="receive"> Receive Confirmation Email </label>
                                                         </div>
 
@@ -250,46 +203,15 @@ export class Body extends Component {
                                 <br/>
                             </div>
 
-                            <FormValidations/>             {/* Adding script for form validations like date of birth should be 18+  */}
+                            {/* Adding script for form validations like date of birth should be 18+  */}
+                            <FormValidations/>
 
                         </Fragment>
                     </Tab>
 
                     <Tab isSelected={this.state.selected === 'Submissions'}>
                         <Fragment>
-                            <br/>
-                            <h2 className="text-center">Submissions currently present in Database</h2>
-                            <h6 className="text-center" style={{fontSize:"calc(8px + 0.9vw)"}}>(Kindly check your Inbox for recieved confirmation e-mails)</h6>
-                            <br/>
-                            <div className="table-wrapper text-center" style={{margin:"1.5vw", minHeight:"15em"}}>
-                                <table className="table table-bordered table-hover table-sm table-responsive-sm">
-                                    <thead className="thead-dark" style={{height:"3.5em"}}>
-                                        <tr>
-                                            <th className="align-middle">ID</th>
-                                            <th className="align-middle">Name</th>
-                                            <th className="align-middle">Email</th>
-                                            <th className="align-middle">Gender</th>
-                                            <th className="align-middle">Phone</th>
-                                            <th className="align-middle">D.O.B</th>
-                                            <th className="align-middle">Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.props.forms.map ( form =>(
-                                            <tr key="form.id">
-                                                <td className="align-middle">{form.id}</td>
-                                                <td className="align-middle">{form.name}</td>
-                                                <td className="align-middle">{form.email}</td>
-                                                <td className="align-middle">{form.gender}</td>
-                                                <td className="align-middle">{form.phone}</td>
-                                                <td className="align-middle">{form.dob}</td>
-                                                <td className="align-middle"><button onClick={this.props.deleteForm.bind(this, form.id)} className="btn btn-danger btn-sm" href="#">Delete</button></td>
-                                                {/* <td className="align-middle"><button onClick={this.handleOnDeleteForm} className="btn btn-danger btn-sm">Delete</button></td> */}
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <Submissions tableData={this.props.forms} deleteBtn={this.props.deleteForm}/>
                         </Fragment>
                     </Tab>
 

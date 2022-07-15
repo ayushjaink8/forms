@@ -22,9 +22,6 @@ export class FormValidations extends Component {
 
                     </script>
 
-
-                    {/* Phone No. Validations */} 
-                    <script></script>
                 </Helmet>
             </>
         )

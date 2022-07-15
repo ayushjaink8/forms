@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-// import ReactDOM from 'react-dom';
-// import './css/header.css';
 
 export class Header extends Component {
     render() {
@@ -8,7 +6,8 @@ export class Header extends Component {
             <>
                 <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" style={{height:"6em"}}>
                     <a className="navbar-brand mr-auto mr-lg-0" href="#" style={{fontSize:"3em"}}>
-                    <img src="../../../static/images/form-icon-5.jpg" style={{width: "1em", marginBottom:"10px"}}/> Forms &nbsp;&nbsp;
+                    <img src="../../../static/images/form-icon-5.jpg" style={{width: "1em", marginBottom:"10px"}}/> 
+                        &nbsp; Feedback &nbsp;
                     </a>
                     <button className="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
                         <span className="navbar-toggler-icon"></span>
@@ -41,7 +40,7 @@ export class Header extends Component {
                     </div>
                 </nav>
 
-                {/* <div className="nav-scroller bg-white shadow-sm" style={{marginTop:"3em"}}>
+                {/* <div className="nav-scroller bg-white shadow-sm" style={{marginTop:"6em"}}>
                     <nav className="nav nav-underline" style={{justifyContent:"center"}}>
                         <a className="nav-link active" href="#">Dashboard</a>
                         <a className="nav-link" href="#">
@@ -63,4 +62,3 @@ export class Header extends Component {
 }
 
 export default Header
-// ReactDOM.render(<header/>, document.getElementById('header'))

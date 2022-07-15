@@ -59,7 +59,7 @@ document.getElementById('phone_code').addEventListener("input", function(e){
             break;
         }
     }
-    if(e.data === '+' || e.data === '-'){        // i dont know why but adding this on top of the array is not working
+    if(e.data === '+' || e.data === '-'){
         flag=false;
     }
     if(flag){
